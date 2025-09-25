@@ -11,8 +11,8 @@ local default_options = {
   symbols = {
     modified = '[+]',
     readonly = '[-]',
-    unnamed = Msgstr("[No Name]"),
-    newfile = Msgstr("[New]"),
+    unnamed = Msgstr('[No Name]'),
+    newfile = Msgstr('[New]'),
   },
   file_status = true,
   newfile_status = false,

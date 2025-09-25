@@ -81,7 +81,7 @@ local function sanitize_color(color)
     return modules.color_utils.color_name2rgb(color)
   elseif type(color) == 'number' then
     if color > 255 then
-      error(Msgstr("What's this it can't be higher then 255 and you've given %s", {tostring(color)}))
+      error(Msgstr("What's this it can't be higher then 255 and you've given %s", { tostring(color) }))
     end
     return modules.color_utils.cterm2rgb(color)
   end
@@ -93,7 +93,7 @@ end
 local function sanitize_color_for_cterm(color)
   if type(color) == 'number' then
     if color > 255 then
-      error(Msgstr("What's this it can't be higher then 255 and you've given %s", {tostring(color)}))
+      error(Msgstr("What's this it can't be higher then 255 and you've given %s", { tostring(color) }))
     end
     return color
   end
