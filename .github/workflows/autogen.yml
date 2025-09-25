@@ -1,23 +1,14 @@
 name: autogen
-on:
-  push:
-    branches: [master]
-    paths:
-      - "lua/**.lua"
-      - "examples/**.lua"
-      - "tests/**.lua"
-      - ".stylua.toml"
-      - "README.md"
-
-# Cancel any in-progress CI runs for a PR if it is updated
+on: push
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && 
+    github.head_ref || github.sha }}
   cancel-in-progress: true
 
 jobs:
   autogen:
     name: "(vimdoc|formating)"
-    runs-on: ubuntu-22.04
+    runs-on: puzl-ubuntu-22.04
     timeout-minutes: 10
     permissions:
       contents: write
@@ -39,7 +30,8 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_user_name: github-actions[bot]
-          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          commit_user_email: 
+            41898282+github-actions[bot]@users.noreply.github.com
           commit_message: "chore: autogen (vimdocs+formating)"
           branch: ${{ github.head_ref }}
           file_pattern: lua/ examples/ tests/ doc/lualine.txt

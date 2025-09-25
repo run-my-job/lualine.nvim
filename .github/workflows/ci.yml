@@ -1,14 +1,11 @@
 name: Tests
 
-on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+on: push
 
 # Cancel any in-progress CI runs for a PR if it is updated
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && 
+    github.head_ref || github.sha }}
   cancel-in-progress: true
 
 jobs:
@@ -42,7 +39,7 @@ jobs:
             runner: ubuntu-22.04
             os: linux
             nvim_version: nightly
-    runs-on: ${{ matrix.runner }}
+    runs-on: puzl-ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
@@ -61,7 +58,7 @@ jobs:
         run: |
           make test
   lint:
-    runs-on: ubuntu-22.04
+    runs-on: puzl-ubuntu-22.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
